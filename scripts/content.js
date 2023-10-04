@@ -9,9 +9,10 @@ let uniqueId = 0;
 
 function isVisible (el) {
     var rect = el.getBoundingClientRect();
-
+    if(rect.height == 0)
+	return false;
     return (
-        rect.top >= -rect.height - 500 
+        rect.top >= -rect.height - 500
     );
 }
 
@@ -37,7 +38,7 @@ function hidePosts(posts){
 let optimise = function(){
     hidePosts(document.getElementsByTagName("shreddit-post"));
     hidePosts(document.getElementsByClassName("Post"));
-    
+    hidePosts(document.getElementsByClassName("scrollerItem"));
     let blanks = document.getElementsByName("betterreddit-blank")
     
     for(let i = 0; i < blanks.length; ++i){
