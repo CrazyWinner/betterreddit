@@ -11,14 +11,11 @@ function isVisible (el) {
     var rect = el.getBoundingClientRect();
 
     return (
-        rect.top >= -rect.height - 500 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) + rect.height + 500
+        rect.top >= -rect.height - 500 
     );
 }
 
-let optimise = function(){
-    let posts = document.getElementsByTagName("shreddit-post")
-    
+function hidePosts(posts){
     for(let i = 0; i < posts.length; ++i){
         let post = posts[i]
         if(!isVisible(post)){
@@ -34,6 +31,12 @@ let optimise = function(){
         }
         
     }
+    
+}
+
+let optimise = function(){
+    hidePosts(document.getElementsByTagName("shreddit-post"));
+    hidePosts(document.getElementsByClassName("Post"));
     
     let blanks = document.getElementsByName("betterreddit-blank")
     
